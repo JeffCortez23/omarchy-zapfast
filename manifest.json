@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "crmne.zapfast",
+  "name": "ZapFast",
+  "version": "1.0.0",
+  "author": "Carmine / ElYefris",
+  "license": "MIT",
+  "description": "Native Omarchy bar control for ZapFast: open, hide, unread badges, themes, and quit WhatsApp.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Widget.qml"
+  },
+  "barWidget": {
+    "displayName": "ZapFast",
+    "description": "A native bar icon with popup controls for ZapFast visibility, theme, unread badge, and quit.",
+    "category": "Messaging",
+    "aliases": [
+      "whatsapp",
+      "zf",
+      "zapfast"
+    ],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "launchCommand": "uwsm-app -- zapfast",
+      "icon": "glyph",
+      "badge": "Count"
+    },
+    "schema": [
+      {
+        "key": "launchCommand",
+        "type": "string",
+        "label": "Launch command",
+        "description": "How ZapFast is launched when no existing instance is running.",
+        "defaultValue": "uwsm-app -- zapfast"
+      },
+      {
+        "key": "icon",
+        "type": "string",
+        "label": "Icon style",
+        "description": "brand (ZapFast logo) or glyph (WhatsApp symbol).",
+        "defaultValue": "glyph"
+      },
+      {
+        "key": "badge",
+        "type": "enum",
+        "label": "Show unread as",
+        "options": [
+          "Count",
+          "Highlight",
+          "None"
+        ],
+        "defaultValue": "Count",
+        "description": "How unread messages appear on the bar. Count draws the numeric badge on the glyph. Highlight recolours the icon and its halo with the bar's alert colour instead. None leaves the icon alone."
+      }
+    ]
+  }
+}
