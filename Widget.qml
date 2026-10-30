@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import qs.Commons as Commons
 import qs.Commons
 import qs.Ui
 
@@ -109,7 +110,7 @@ BarWidget {
     visible: !root.showBrand
     anchors.centerIn: parent
     text: "󰖣"
-    color: root.highlightActive ? root.alertColor : Commons.Color.accent
+    color: root.highlightActive ? root.alertColor : Color.accent
     opacity: data.running ? 0.16 : 0
     scale: 1.55
     font.family: root.bar ? root.bar.fontFamily : Style.font.family
@@ -122,7 +123,7 @@ BarWidget {
     visible: !root.showBrand
     anchors.centerIn: parent
     text: "󰖣"
-    color: root.highlightActive ? root.alertColor : Commons.Color.accent
+    color: root.highlightActive ? root.alertColor : Color.accent
     opacity: data.running ? 0.28 : 0
     scale: 1.24
     font.family: root.bar ? root.bar.fontFamily : Style.font.family
@@ -136,7 +137,7 @@ BarWidget {
     anchors.centerIn: parent
     text: "󰖣"
     color: root.highlightActive ? root.alertColor
-      : (data.running ? Commons.Color.accent : root.foreground)
+      : (data.running ? Color.accent : root.foreground)
     font.family: root.bar ? root.bar.fontFamily : Style.font.family
     font.pixelSize: Style.bar.iconFont + Style.space(2)
     horizontalAlignment: Text.AlignHCenter
