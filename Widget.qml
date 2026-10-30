@@ -238,7 +238,11 @@ BarWidget {
         leftAlign: true
         foreground: root.foreground
         onClicked: {
-          root.toggleApp()
+          if (data.appVisible) {
+            data.hide()
+          } else {
+            data.show()
+          }
           root.close()
         }
       }

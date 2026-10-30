@@ -96,7 +96,7 @@ Item {
   }
 
   Timer {
-    interval: 2000
+    interval: 1500
     running: true
     repeat: true
     triggeredOnStart: true
@@ -134,7 +134,7 @@ Item {
     }
   }
 
-  // Handle smart window toggle
+  // Handle smart window toggle: if visible, hide to tray; if in tray, show; if stopped, launch
   Process {
     id: toggleProc
     running: false
@@ -143,15 +143,10 @@ Item {
          uwsm-app -- zapfast 2>/dev/null || zapfast
          exit 0
        fi
-       active=$(hyprctl activewindow -j 2>/dev/null | jq -r ".class // empty")
-       if [ "$active" = "zapfast" ]; then
-         hyprctl dispatch closewindow class:^zapfast$
+       if hyprctl clients -j 2>/dev/null | jq -e ".[] | select(.class == \\"zapfast\\" and .mapped == true)" >/dev/null 2>&1; then
+         hyprctl dispatch "hl.dsp.window.close({ window = \\"class:zapfast\\" })" >/dev/null 2>&1 || hyprctl dispatch closewindow class:zapfast >/dev/null 2>&1
        else
-         if hyprctl clients -j 2>/dev/null | jq -e ".[] | select(.class == \\"zapfast\\" and .mapped == true)" >/dev/null 2>&1; then
-           hyprctl dispatch focuswindow class:^zapfast$
-         else
-           zapfast
-         fi
+         zapfast >/dev/null 2>&1 || true
        fi']
     onExited: {
       checkStatusTimer.start()
@@ -179,17 +174,13 @@ Item {
   }
 
   function show() {
-    Quickshell.execDetached(["sh", "-c",
-      'if hyprctl clients -j 2>/dev/null | jq -e ".[] | select(.class == \\"zapfast\\" and .mapped == true)" >/dev/null 2>&1; then
-         hyprctl dispatch focuswindow class:^zapfast$
-       else
-         zapfast
-       fi'])
+    Quickshell.execDetached(["sh", "-c", "zapfast >/dev/null 2>&1 || true"])
     checkStatusTimer.start()
   }
 
   function hide() {
-    Quickshell.execDetached(["hyprctl", "dispatch", "closewindow", "class:^zapfast$"])
+    Quickshell.execDetached(["sh", "-c",
+      'hyprctl dispatch "hl.dsp.window.close({ window = \\"class:zapfast\\" })" >/dev/null 2>&1 || hyprctl dispatch closewindow class:zapfast >/dev/null 2>&1'])
     checkStatusTimer.start()
   }
 
