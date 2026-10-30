@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "crmne.zapfast",
-  "name": "ZapFast",
+  "id": "io.github.jeffcortez23.omarchy-zapfast",
+  "name": "Omarchy ZapFast",
   "version": "1.0.0",
-  "author": "Carmine / ElYefris",
+  "author": "Jeff Cortez",
   "license": "MIT",
-  "description": "Native Omarchy bar control for ZapFast: open, hide, unread badges, themes, and quit WhatsApp.",
+  "description": "Native Omarchy status bar widget and control suite for ZapFast WhatsApp client.",
   "kinds": [
     "bar-widget"
   ],
@@ -17,9 +17,10 @@
     "description": "A native bar icon with popup controls for ZapFast visibility, theme, unread badge, and quit.",
     "category": "Messaging",
     "aliases": [
+      "zapfast",
       "whatsapp",
       "zf",
-      "zapfast"
+      "omarchy-zapfast"
     ],
     "allowMultiple": false,
     "defaultSection": "right",

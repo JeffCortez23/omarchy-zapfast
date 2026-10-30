@@ -8,7 +8,7 @@ import qs.Ui
 // The bar owns the trigger and the PopupCard owns the detail surface.
 BarWidget {
   id: root
-  moduleName: "crmne.zapfast"
+  moduleName: "io.github.jeffcortez23.omarchy-zapfast"
   property bool popupOpen: false
   readonly property color foreground: bar ? bar.foreground : Color.foreground
 
