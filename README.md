@@ -66,6 +66,16 @@ omarchy plugin enable io.github.jeffcortez23.omarchy-zapfast
 
 ---
 
+## 🗑️ Removal / Uninstallation
+
+```bash
+# Disable and remove the plugin from Omarchy
+omarchy plugin disable io.github.jeffcortez23.omarchy-zapfast
+omarchy plugin remove io.github.jeffcortez23.omarchy-zapfast
+```
+
+---
+
 ## 🖱️ Mouse Controls
 
 | Action | Result |
